@@ -1,6 +1,5 @@
-import axios from 'axios'
 import { ProdutoItem } from '@/components/ProdutoItem'
-import { ListaProduto } from '@/types/produto'
+import { getProdutos } from '@/models/product.server'
 
 export const metadata = {
   title: 'Ecommerce',
@@ -8,9 +7,7 @@ export const metadata = {
 }
 
 const Home = async () => {
-  const { data: produtos } = await axios.get<ListaProduto[]>(
-    'https://apihomolog.innovationbrindes.com.br/api/site/v2/teste/listagem-produtos'
-  )
+  const produtos = await getProdutos()
 
   return (
     <main className="flex-1 p-12">
