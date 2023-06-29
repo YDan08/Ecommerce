@@ -9,7 +9,7 @@ interface PageProps {
   }
 }
 
-export const Product = async ({ params }: PageProps) => {
+const Product = async ({ params }: PageProps) => {
   const produto = await getProdutoById(params.id)
 
   if (!produto) {

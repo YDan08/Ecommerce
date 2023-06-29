@@ -15,7 +15,7 @@ type Action =
   | { type: 'set'; carrinho: ProdutosCarrinho[] }
 
 interface AppContextProps {
-  carrinho?: ProdutosCarrinho[]
+  carrinho: ProdutosCarrinho[]
   handleAdd: (produto: Produto, quantidade: number) => void
   handleRemove: (codigo: number) => void
   handleProductIncrement: (codigo: number) => void
