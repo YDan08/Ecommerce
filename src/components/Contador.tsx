@@ -1,14 +1,13 @@
 "use client"
-import { ProductContext } from "@/context/ProductContext"
+import { useContador } from "@/context/ProductContext"
 import { MinusIcon, PlusIcon } from "lucide-react"
-import { useContext } from "react"
 
 interface ContadorProps {
 	estoque: number
 }
 
 export const Contador = ({ estoque }: ContadorProps) => {
-	const { quantidade, handleDecrement, handleIncrement } = useContext(ProductContext)
+	const { quantidade, handleDecrement, handleIncrement } = useContador()
 	return (
 		<div className='border-t border-zinc-400 mt-8 mb-5 pt-4'>
 			<h2 className='mb-3'>Quantidade</h2>

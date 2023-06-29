@@ -1,7 +1,6 @@
 "use client"
-import { AppContext } from "@/context/AppContext"
+import { useCarrinho } from "@/context/AppContext"
 import { MinusIcon, PlusIcon } from "lucide-react"
-import { useContext } from "react"
 
 interface ContadorProdutoCarrinhoProps {
 	codigoProduto: number
@@ -12,8 +11,7 @@ export const ContadorProdutoCarrinho = ({
 	estoque,
 	codigoProduto,
 }: ContadorProdutoCarrinhoProps) => {
-	const { carrinho, handleProductDecrement, handleProductIncrement } =
-		useContext(AppContext)
+	const { carrinho, handleProductDecrement, handleProductIncrement } = useCarrinho()
 	return (
 		<div className='border-t border-zinc-400 mt-8 mb-5 pt-4'>
 			<h2 className='mb-3'>Quantidade</h2>

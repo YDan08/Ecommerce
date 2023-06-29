@@ -1,10 +1,9 @@
-import { AppContext } from "@/context/AppContext"
+import { useCarrinho } from "@/context/AppContext"
 import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
-import { useContext } from "react"
 
 export const NavBar = () => {
-	const { carrinho } = useContext(AppContext)
+	const { carrinho } = useCarrinho()
 	return (
 		<nav className='flex justify-between px-10 py-5 bg-green-600 text-white'>
 			<Link href={"/"}>

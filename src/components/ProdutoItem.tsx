@@ -1,7 +1,6 @@
 "use client"
 
-import { useContext } from "react"
-import { AppContext } from "@/context/AppContext"
+import { useCarrinho } from "@/context/AppContext"
 import { ListaProduto, Produto } from "@/types/produto"
 import Image from "next/image"
 import Link from "next/link"
@@ -19,7 +18,7 @@ const transformProduto = (produto: ListaProduto): Produto => {
 }
 
 export const ProdutoItem = ({ produto }: ProdutoItemProps) => {
-	const { handleAdd } = useContext(AppContext)
+	const { handleAdd } = useCarrinho()
 
 	const handleBuy = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()

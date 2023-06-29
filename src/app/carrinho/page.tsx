@@ -1,12 +1,11 @@
 "use client"
 import ContadorProdutoCarrinho from "@/components/ContadorProdutoCarrinho"
-import { AppContext } from "@/context/AppContext"
+import { useCarrinho } from "@/context/AppContext"
 import { Trash2Icon } from "lucide-react"
 import Image from "next/image"
-import { useContext } from "react"
 
 export const Carrinho = () => {
-	const { carrinho, handleReset } = useContext(AppContext)
+	const { carrinho, handleReset } = useCarrinho()
 	return (
 		<main className='flex-1  px-36 py-20'>
 			<div className='flex flex-col bg-white border border-zinc-400 p-10 rounded-2xl'>
