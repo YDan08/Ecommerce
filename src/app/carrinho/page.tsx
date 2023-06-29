@@ -14,7 +14,7 @@ export const Carrinho = () => {
   return (
     <main className="flex-1  px-36 py-20">
       <div className="flex flex-col rounded-2xl border border-zinc-400 bg-white p-10">
-        <div className="mb-14 flex items-center justify-between">
+        <div className="mb-14 flex flex-col items-center justify-between gap-y-8 lg:flex-row">
           <h1 className="text-3xl font-semibold">Carrinho de Compras</h1>
           <button
             className="flex rounded-lg border border-red-700 p-4 text-red-700 hover:bg-red-500 hover:text-white"
@@ -24,7 +24,7 @@ export const Carrinho = () => {
             Remover todos os produtos
           </button>
         </div>
-        <div className="flex flex-col border-t border-zinc-400">
+        <div className="flex flex-col">
           {carrinho ? (
             carrinho.length !== 0 ? (
               carrinho.map(item => <ItemCarrinho item={item} key={item.produto.codigo_produto} />)

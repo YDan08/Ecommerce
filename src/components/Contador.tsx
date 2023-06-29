@@ -16,7 +16,7 @@ export const Contador = ({ estoque }: ContadorProps) => {
         <>
           <div className="mb-3 flex items-center text-center">
             <button
-              className="rounded-md bg-indigo-50 px-2 py-1 text-indigo-800 transition-colors duration-150 ease-in-out hover:bg-indigo-200 disabled:opacity-25"
+              className="rounded-md bg-indigo-50 px-2 py-1 text-indigo-800 transition-colors duration-150 ease-in-out hover:bg-indigo-200 disabled:opacity-50 disabled:hover:bg-indigo-50"
               onClick={handleDecrement}
               disabled={quantidade <= 1}
             >
@@ -24,7 +24,7 @@ export const Contador = ({ estoque }: ContadorProps) => {
             </button>
             <p className="mx-5">{quantidade}</p>
             <button
-              className="rounded-md bg-indigo-50 px-2 py-1 text-indigo-800 transition-colors duration-150 ease-in-out hover:bg-indigo-200 disabled:opacity-25"
+              className="rounded-md bg-indigo-50 px-2 py-1 text-indigo-800 transition-colors duration-150 ease-in-out hover:bg-indigo-200 disabled:opacity-50 disabled:hover:bg-indigo-50"
               onClick={handleIncrement}
               disabled={estoque <= quantidade}
             >

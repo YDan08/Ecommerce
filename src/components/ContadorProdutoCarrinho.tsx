@@ -16,7 +16,7 @@ export const ContadorProdutoCarrinho = ({
   const quantidade = carrinho?.filter(produto => produto.produto.codigo_produto === codigoProduto)[0]
     .quantidade
   return (
-    <div className="mb-5 mt-8 flex flex-col items-center justify-center pt-4">
+    <div className="flex flex-col items-center justify-center pt-4">
       {quantidade && estoque && (
         <div className="mb-3 flex items-center text-center">
           <button
