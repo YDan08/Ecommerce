@@ -1,14 +1,11 @@
 'use client'
 
 import { Tab } from '@headlessui/react'
+import { classNames } from '@/utils'
 
 export interface ImagesCarouselProps {
   images: string[]
   productName: string
-}
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
 }
 
 export const ImagesCarousel = ({ images, productName }: ImagesCarouselProps) => {

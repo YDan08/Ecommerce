@@ -6,3 +6,7 @@ export function capitalize(str: string): string {
     })
     .join(' ')
 }
+
+export function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
