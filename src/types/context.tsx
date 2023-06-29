@@ -1,6 +1,6 @@
-import { Produto } from "./produto"
+import { Produto } from './produto'
 
 export interface ProdutosCarrinho {
-	produto: Produto
-	quantidade: number
+  produto: Produto
+  quantidade: number
 }
