@@ -1,8 +1,12 @@
 "use client"
-import ContadorProdutoCarrinho from "@/components/ContadorProdutoCarrinho"
+import { ItemCarrinho } from "@/components/ItemCarrinho"
 import { useCarrinho } from "@/context/AppContext"
 import { Trash2Icon } from "lucide-react"
-import Image from "next/image"
+
+export const metadata = {
+	title: "Carrinho - ecommerce",
+	description: "Projeto de ecommerce",
+}
 
 export const Carrinho = () => {
 	const { carrinho, handleReset } = useCarrinho()
@@ -12,7 +16,7 @@ export const Carrinho = () => {
 				<div className='flex justify-between items-center mb-14'>
 					<h1 className='font-semibold text-3xl'>Carrinho de Compras</h1>
 					<button
-						className='p-4 rounded-lg text-red-700 border border-red-700 flex'
+						className='p-4 rounded-lg text-red-700 border border-red-700 flex hover:bg-red-500 hover:text-white'
 						onClick={handleReset}
 					>
 						<Trash2Icon className='mr-2' />
@@ -23,22 +27,7 @@ export const Carrinho = () => {
 					{carrinho ? (
 						carrinho.length !== 0 ? (
 							carrinho.map(item => (
-								<div className='flex flex-col' key={item.produto.codigo_produto}>
-									<div className='flex justify-between items-center mt-10'>
-										<Image
-											src={item.produto.imagem_produto}
-											alt='processador'
-											width={80}
-											height={80}
-										/>
-										<h3>{item.produto.nome}</h3>
-
-										<button className='p-4 rounded-lg text-red-700 flex'>
-											<Trash2Icon className='mr-2' /> Remover
-										</button>
-										<ContadorProdutoCarrinho codigoProduto={item.produto.codigo_produto} />
-									</div>
-								</div>
+								<ItemCarrinho item={item} key={item.produto.codigo_produto} />
 							))
 						) : (
 							<h2 className='text-center mt-20 font-semibold'>
