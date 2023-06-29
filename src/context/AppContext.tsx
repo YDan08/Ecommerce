@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, useReducer, useContext, useCallback, useMemo, useEffect } from 'react'
 import { ProdutosCarrinho } from '@/types/context'
 import { Produto } from '@/types/produto'

@@ -5,19 +5,19 @@ import { useCarrinho } from '@/context/AppContext'
 
 interface ContadorProdutoCarrinhoProps {
   codigoProduto: number
+  quantidade: number
   estoque?: number
 }
 
 export const ContadorProdutoCarrinho = ({
   estoque,
+  quantidade,
   codigoProduto
 }: ContadorProdutoCarrinhoProps) => {
-  const { carrinho, handleProductDecrement, handleProductIncrement } = useCarrinho()
-  const quantidade = carrinho?.filter(produto => produto.produto.codigo_produto === codigoProduto)[0]
-    .quantidade
+  const { handleProductDecrement, handleProductIncrement } = useCarrinho()
   return (
     <div className="flex flex-col items-center justify-center pt-4">
-      {quantidade && estoque && (
+      {estoque && (
         <div className="mb-3 flex items-center text-center">
           <button
             className="rounded-md bg-indigo-100 px-2 py-1 text-indigo-800"

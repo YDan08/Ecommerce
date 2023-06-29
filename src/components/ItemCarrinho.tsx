@@ -21,6 +21,7 @@ export const ItemCarrinho = ({ item }: ItemCarrinhoProps) => {
 
         <ContadorProdutoCarrinho
           codigoProduto={item.produto.codigo_produto}
+          quantidade={item.quantidade}
           estoque={Number(item.produto.estoque)}
         />
 
