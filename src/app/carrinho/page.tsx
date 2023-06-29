@@ -4,11 +4,6 @@ import { Trash2Icon } from 'lucide-react'
 import { ItemCarrinho } from '@/components/ItemCarrinho'
 import { useCarrinho } from '@/context/AppContext'
 
-export const metadata = {
-  title: 'Carrinho - ecommerce',
-  description: 'Projeto de ecommerce'
-}
-
 const Carrinho = () => {
   const { carrinho, handleReset } = useCarrinho()
   return (
