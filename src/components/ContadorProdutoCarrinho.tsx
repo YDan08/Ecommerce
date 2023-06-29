@@ -12,31 +12,29 @@ export const ContadorProdutoCarrinho = ({
 	codigoProduto,
 }: ContadorProdutoCarrinhoProps) => {
 	const { carrinho, handleProductDecrement, handleProductIncrement } = useCarrinho()
+	const quantidade = carrinho?.filter(
+		produto => produto.produto.codigo_produto === codigoProduto
+	)[0].quantidade
 	return (
-		<div className='border-t border-zinc-400 mt-8 mb-5 pt-4'>
-			<h2 className='mb-3'>Quantidade</h2>
-
-			<div className='mb-3 flex items-center text-center'>
-				<button
-					className='bg-gray-400 rounded-full p-1'
-					onClick={() => handleProductDecrement(codigoProduto)}
-				>
-					<MinusIcon />
-				</button>
-				<p className='mx-5'>
-					{
-						carrinho?.filter(produto => produto.produto.codigo_produto === codigoProduto)[0]
-							.quantidade
-					}
-				</p>
-				<button
-					className='bg-gray-400 rounded-full p-1'
-					onClick={() => handleProductIncrement(codigoProduto)}
-				>
-					<PlusIcon />
-				</button>
-			</div>
-			<h2 className='text-green-800'>Estoque: {estoque}</h2>
+		<div className='mt-8 mb-5 pt-4 flex flex-col justify-center items-center'>
+			{quantidade && estoque && (
+				<div className='mb-3 flex items-center text-center'>
+					<button
+						className='bg-indigo-100 rounded-md py-1 px-2 text-indigo-800'
+						onClick={() => handleProductDecrement(codigoProduto)}
+					>
+						<MinusIcon width={16} />
+					</button>
+					<p className='mx-5'>{quantidade}</p>
+					<button
+						className='bg-indigo-100 rounded-md py-1 px-2 text-indigo-800 disabled:opacity-25'
+						onClick={() => handleProductIncrement(codigoProduto)}
+						disabled={estoque <= quantidade}
+					>
+						<PlusIcon width={16} />
+					</button>
+				</div>
+			)}
 		</div>
 	)
 }
