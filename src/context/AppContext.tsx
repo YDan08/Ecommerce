@@ -1,4 +1,4 @@
-import { createContext, useReducer, useContext, useCallback, useMemo } from 'react'
+import { createContext, useReducer, useContext, useCallback, useMemo, useEffect } from 'react'
 import { ProdutosCarrinho } from '@/types/context'
 import { Produto } from '@/types/produto'
 
@@ -12,6 +12,7 @@ type Action =
   | { type: 'increment'; codigo: number }
   | { type: 'decrement'; codigo: number }
   | { type: 'reset' }
+  | { type: 'set'; carrinho: ProdutosCarrinho[] }
 
 interface AppContextProps {
   carrinho?: ProdutosCarrinho[]
@@ -112,13 +113,48 @@ function reducer(state: State, action: Action) {
       }
     }
 
+    case 'set': {
+      return {
+        ...state,
+        carrinho: action.carrinho
+      }
+    }
+
     default:
       return state
   }
 }
 
+const getCarrinho = (): ProdutosCarrinho[] => {
+  if (typeof window === 'undefined') return []
+
+  const res = localStorage.getItem('carrinho')
+
+  if (!res) return []
+
+  const carrinho = JSON.parse(res)
+
+  if (!Array.isArray(carrinho)) {
+    localStorage.removeItem('carrinho')
+
+    return []
+  }
+
+  return carrinho
+}
+
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, { carrinho: [] })
+
+  useEffect(() => {
+    const carrinho = getCarrinho()
+    dispatch({ type: 'set', carrinho })
+  }, [])
+
+  useEffect(() => {
+    const carrinho = JSON.stringify(state.carrinho)
+    localStorage.setItem('carrinho', carrinho)
+  }, [state.carrinho])
 
   const handleAdd = useCallback((produto: Produto, quantidade: number) => {
     dispatch({ type: 'add', produto, quantidade })
