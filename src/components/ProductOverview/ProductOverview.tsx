@@ -1,7 +1,10 @@
+import addDays from 'date-fns/addDays'
+import format from 'date-fns/format'
 import { Produto } from '@/types/produto'
 import { Contador } from '../Contador'
 import { BotaoAdicionar } from '../BotaoAdicionar'
 import { ImagesCarousel } from './ImagesCarousel'
+import { Detail, ProductDetails } from './ProductDetails'
 
 export interface ProductOverviewProps {
   produto: Produto
@@ -13,6 +16,26 @@ export const ProductOverview = ({ produto }: ProductOverviewProps) => {
 
     return `${produto.imagem_produto.replace('1-1', `${index}-${index}`)}`
   })
+
+  const details: Detail[] = [
+    {
+      name: 'Dimensões',
+      items: [produto.dimensoes]
+    },
+    {
+      name: 'Peso',
+      items: [`${produto.peso_produto} kg`]
+    },
+    {
+      name: 'Entrega',
+      items: [
+        `Entrega a partir de ${format(
+          addDays(new Date(), produto.prazo_minimo_entrega),
+          'dd/MM/yyyy'
+        )}`
+      ]
+    }
+  ]
 
   return (
     <div className="mx-auto max-w-2xl flex-1 px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -39,6 +62,8 @@ export const ProductOverview = ({ produto }: ProductOverviewProps) => {
               Produto indisponível
             </button>
           )}
+
+          <ProductDetails details={details} />
         </div>
       </div>
     </div>
