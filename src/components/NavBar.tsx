@@ -5,15 +5,15 @@ import Link from "next/link"
 export const NavBar = () => {
 	const { carrinho } = useCarrinho()
 	return (
-		<nav className='flex justify-between px-10 py-5 bg-green-600 text-white'>
+		<nav className='sticky flex justify-between px-10 py-5 bg-slate-100 text-gray-700'>
 			<Link href={"/"}>
-				<h1>Ecommerce</h1>
+				<h1 className='font-semibold'>Ecommerce</h1>
 			</Link>
 
 			<Link href={"/carrinho"}>
 				<div className='flex'>
-					<ShoppingCart />
-					<h2 className='ml-2'>{carrinho?.length} itens</h2>
+					<ShoppingCart className='text-gray-500' />
+					<h2 className='ml-2'>{carrinho?.length}</h2>
 				</div>
 			</Link>
 		</nav>

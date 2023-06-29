@@ -1,17 +1,15 @@
 "use client"
-import "./globals.css"
+import { Inter } from "next/font/google"
 import Footer from "@/components/Footer"
 import { AppProvider } from "../context/AppContext"
+import "./globals.css"
 
-export const metadata = {
-	title: "Ecommerce",
-	description: "Projeto de marketplace",
-}
+const inter = Inter({ subsets: ["latin"] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className='bg-slate-100 text-slate-950'>
+			<body className={`text-slate-950 ${inter.className}`}>
 				<div className='h-screen flex flex-col'>
 					<AppProvider>{children}</AppProvider>
 					<Footer />
