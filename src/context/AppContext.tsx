@@ -22,25 +22,28 @@ export const AppContext = createContext<AppContextProps>({
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 	const [carrinho, setCarrinho] = useState<ProdutosCarrinho[]>([])
-	console.log(carrinho)
 	const handleAdd = (produto: Produto, quantidade: number) => {
-		const item = carrinho.filter(
+		const existsProduto = carrinho.some(
 			item => item.produto.codigo_produto === produto.codigo_produto
 		)
 
-		if (item.length != 0) {
-			const novaQuantidade = item[0].quantidade + quantidade
-			const produtos = carrinho.filter(
-				item => item.produto.codigo_produto !== produto.codigo_produto
-			)
-			return setCarrinho([...produtos, { produto, quantidade: novaQuantidade }])
+		if (!existsProduto) {
+			return setCarrinho(prevProdutos => [...prevProdutos, { produto, quantidade }])
 		}
-		setCarrinho([...carrinho, { produto, quantidade }])
+
+		setCarrinho(prevProdutos =>
+			prevProdutos.map(prevProduto =>
+				prevProduto.produto.codigo_produto === produto.codigo_produto
+					? { ...prevProduto, quantidade: prevProduto.quantidade + quantidade }
+					: prevProduto
+			)
+		)
 	}
 
 	const handleRemove = (codigo: number) => {
-		const produtos = carrinho.filter(produto => produto.produto.codigo_produto != codigo)
-		setCarrinho(produtos)
+		setCarrinho(prevProdutos =>
+			prevProdutos.filter(produto => produto.produto.codigo_produto != codigo)
+		)
 	}
 
 	const handleReset = () => {
@@ -48,30 +51,36 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 	}
 
 	const handleProductIncrement = (codigo: number) => {
-		const produto = carrinho.filter(produto => produto.produto.codigo_produto === codigo)
-		if (produto.length !== 0) {
-			const novaQuantidade = produto[0].quantidade + 1
-			const produtos = carrinho.filter(produto => produto.produto.codigo_produto !== codigo)
-			setCarrinho([
-				...produtos,
-				{ produto: produto[0].produto, quantidade: novaQuantidade },
-			])
+		const existsProduto = carrinho.some(
+			produto => produto.produto.codigo_produto === codigo
+		)
+
+		if (existsProduto) {
+			setCarrinho(prevProdutos =>
+				prevProdutos.map(prevProduto =>
+					prevProduto.produto.codigo_produto === codigo
+						? { ...prevProduto, quantidade: prevProduto.quantidade + 1 }
+						: prevProduto
+				)
+			)
 		}
 	}
 
 	const handleProductDecrement = (codigo: number) => {
-		const produto = carrinho.filter(item => item.produto.codigo_produto === codigo)
-		if (produto.length !== 0) {
-			const produtos = carrinho.filter(item => item.produto.codigo_produto !== codigo)
-			console.log([produto[0].quantidade, "remove"])
-			if (produto[0].quantidade < 2) {
-				setCarrinho([...produtos])
+		const produto = carrinho.find(item => item.produto.codigo_produto === codigo)
+		if (produto) {
+			if (produto.quantidade <= 1) {
+				setCarrinho(prevProduto =>
+					prevProduto.filter(prevProduto => prevProduto.produto.codigo_produto !== codigo)
+				)
 			} else {
-				const novaQuantidade = produto[0].quantidade - 1
-				setCarrinho([
-					...produtos,
-					{ produto: produto[0].produto, quantidade: novaQuantidade },
-				])
+				setCarrinho(prevProduto =>
+					prevProduto.map(prevProduto =>
+						prevProduto.produto.codigo_produto === codigo
+							? { ...prevProduto, quantidade: prevProduto.quantidade - 1 }
+							: prevProduto
+					)
+				)
 			}
 		}
 	}
