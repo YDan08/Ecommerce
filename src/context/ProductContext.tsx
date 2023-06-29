@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useReducer } from "react"
+import { createContext, useContext, useReducer } from "react"
 
 type State = {
 	quantidade: number
@@ -14,19 +14,23 @@ interface ProductContextProps {
 }
 
 export const ProductContext = createContext<ProductContextProps>({
-	quantidade: 0,
+	quantidade: 1,
 	handleIncrement: () => {},
 	handleDecrement: () => {},
 })
+
+export const useContador = () => useContext(ProductContext)
 
 function reducer(state: State, action: Action) {
 	switch (action.type) {
 		case "increment":
 			return {
+				...state,
 				quantidade: state.quantidade + 1,
 			}
 		case "decrement":
 			return {
+				...state,
 				quantidade: state.quantidade - 1,
 			}
 		default:
