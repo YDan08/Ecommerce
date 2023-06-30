@@ -38,7 +38,7 @@ export const ProductOverview = ({ produto }: ProductOverviewProps) => {
   ]
 
   return (
-    <div className="mx-auto max-w-2xl flex-1 px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto flex max-w-2xl flex-1 px-4 py-12 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8">
       <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 ">
         <ImagesCarousel images={images} productName={produto.nome} />
         <div className="mt-10 flex w-full flex-col px-4 sm:mt-16 sm:px-0 lg:mt-0">
