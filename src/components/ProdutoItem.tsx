@@ -1,6 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import { toast, Flip } from 'react-toastify'
+import { ShoppingCart } from 'lucide-react'
 import { useCarrinho } from '@/context/AppContext'
 import { ListaProduto, Produto } from '@/types/produto'
 
@@ -22,6 +24,13 @@ export const ProdutoItem = ({ produto }: ProdutoItemProps) => {
 
   const handleBuy = () => {
     handleAdd(transformProduto(produto), 1)
+    toast.success('Produto adicionado!', {
+      position: 'top-center',
+      autoClose: 2000,
+      closeOnClick: true,
+      icon: <ShoppingCart className="text-gray-500" />,
+      transition: Flip
+    })
   }
 
   return (
@@ -43,13 +52,12 @@ export const ProdutoItem = ({ produto }: ProdutoItemProps) => {
         </div>
       </Link>
       <div className="mt-6">
-        <Link
-          href="/carrinho"
+        <button
           className="relative flex w-full items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200"
           onClick={handleBuy}
         >
           Adicionar ao carrinho
-        </Link>
+        </button>
       </div>
     </div>
   )
