@@ -36,7 +36,7 @@ export const ProdutoItem = ({ produto }: ProdutoItemProps) => {
             />
           </div>
           <div className="relative mt-4">
-            <h3 className="text-sm font-medium capitalize text-gray-900">
+            <h3 className="text-center text-sm font-medium capitalize text-gray-900 sm:text-left">
               {produto.nome_produto.toLowerCase()}
             </h3>
           </div>

@@ -7,7 +7,7 @@ import { useCarrinho } from '@/context/AppContext'
 export const NavBar = () => {
   const { carrinho } = useCarrinho()
   return (
-    <nav className="sticky top-0 flex justify-between bg-slate-100 px-10 py-5 text-gray-700">
+    <nav className="sticky top-0 z-50 flex justify-between bg-slate-100 px-10 py-5 text-gray-700">
       <Link href="/">
         <h1 className="font-semibold">Ecommerce</h1>
       </Link>

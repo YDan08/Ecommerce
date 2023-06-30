@@ -7,16 +7,16 @@ import { useCarrinho } from '@/context/AppContext'
 const Carrinho = () => {
   const { carrinho, handleReset } = useCarrinho()
   return (
-    <main className="flex-1  px-36 py-20">
-      <div className="flex flex-col rounded-2xl border border-gray-200 bg-white p-10">
+    <main className="flex-1 px-3 py-2 sm:px-28 sm:py-20">
+      <div className="flex flex-col rounded-2xl border-0 bg-white p-10  sm:border sm:border-gray-200">
         <div className="mb-14 flex flex-col items-center justify-between gap-y-8 lg:flex-row">
-          <h1 className="text-3xl font-semibold">Carrinho de Compras</h1>
+          <h1 className="text-xl font-semibold sm:text-3xl">Carrinho de Compras</h1>
           {carrinho.length > 0 && (
             <button
-              className="linear flex gap-1 rounded-lg bg-red-50 px-4 py-3 text-red-700 transition-colors duration-200 hover:bg-red-200"
+              className="flex w-full items-center justify-center gap-1 rounded-lg bg-red-50 px-4 py-3 text-[12px] text-red-700 transition-colors duration-200 hover:bg-red-200 sm:w-auto sm:text-base"
               onClick={handleReset}
             >
-              <Trash2Icon className="mr-2" />
+              <Trash2Icon className="mr-2 w-3 sm:w-6" />
               <span>Remover todos os produtos</span>
             </button>
           )}
