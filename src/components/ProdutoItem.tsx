@@ -43,12 +43,13 @@ export const ProdutoItem = ({ produto }: ProdutoItemProps) => {
         </div>
       </Link>
       <div className="mt-6">
-        <button
+        <Link
+          href="/carrinho"
           className="relative flex w-full items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200"
           onClick={handleBuy}
         >
-          Adicionar ao carrinho<span className="sr-only">, {produto.nome_produto}</span>
-        </button>
+          Adicionar ao carrinho
+        </Link>
       </div>
     </div>
   )

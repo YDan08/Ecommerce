@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { Trash2Icon } from 'lucide-react'
+import Link from 'next/link'
 import { ProdutosCarrinho } from '@/types/context'
 import { useCarrinho } from '@/context/AppContext'
 import { ContadorProdutoCarrinho } from './ContadorProdutoCarrinho'
@@ -16,14 +17,19 @@ export const ItemCarrinho = ({ item }: ItemCarrinhoProps) => {
   return (
     <div className="flex divide-y divide-gray-200 border-t pb-6" key={item.produto.codigo_produto}>
       <div className="mt-10 grid w-full grid-cols-1 items-center gap-4 text-center lg:grid-cols-4">
-        <Image
-          src={item.produto.imagem_produto}
-          alt="processador"
-          width={80}
-          height={80}
-          className="mx-auto"
-        />
-        <h3 className="font-medium capitalize ">{item.produto.nome.toLowerCase()}</h3>
+        <Link href={`/products/${item.produto.codigo_produto}`}>
+          <Image
+            src={item.produto.imagem_produto}
+            alt="processador"
+            width={80}
+            height={80}
+            className="mx-auto"
+          />
+        </Link>
+
+        <Link href={`/products/${item.produto.codigo_produto}`}>
+          <h3 className="font-medium capitalize ">{item.produto.nome.toLowerCase()}</h3>
+        </Link>
 
         <ContadorProdutoCarrinho
           codigoProduto={item.produto.codigo_produto}
